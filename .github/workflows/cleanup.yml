@@ -2,13 +2,14 @@ name: Remove old folders
 
 on:
   schedule:
-    - cron: '0 12 * * *'
+    - cron:
+     '0 12 * * *'
   workflow_dispatch:
 
 jobs:
   cleanup:
     name: Cleanup old folder
-    runs-on: ubuntu-latests
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
