@@ -14,8 +14,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
+      - name: List removed folders
+        run: find ./* -type d -ctime +1 -maxdepth 0  -exec rm -rf {} \;'
       - name: Remove folders
-        run: find ./* -type d -ctime +1 -exec rm -rf {} \;
+        run: 'find ./* -type d -ctime +1 -maxdepth 0  -exec rm -rf {} \;'
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Removing old files"
