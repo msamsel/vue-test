@@ -1,0 +1,22 @@
+name: Remove old folders
+
+on:
+  schedule:
+    - cron '0 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    name: Cleanup old folder
+    runs-on: ubuntu-latests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Remove folders
+        run: find ./* -type d -ctime +1 -exec rm -rf {} \;
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Removing old files"
+
